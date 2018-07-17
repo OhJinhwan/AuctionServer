@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Date;
+import java.util.Vector;
 
 import com.encore.auctionServer.view.ServerView;
 
@@ -13,7 +15,7 @@ public class ServerController {
 	
 	public ServerController() {
 		serverView = new ServerView();
-		server = new Server();
+		server = new Server(serverView);
 		serverView.setVisible(true);
 		
 		eventUp();
@@ -21,7 +23,7 @@ public class ServerController {
 	
 	private void eventUp() {
 		serverView.bt_start_n_stop.addActionListener(new ActionListener() {
-			boolean start_n_stop_flag = false; //ture : 켜져있음 false : 꺼져있음
+			boolean start_n_stop_flag = false; //true : 켜져있음 false : 꺼져있음
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!start_n_stop_flag) { //서버가 꺼져있으면
@@ -39,7 +41,7 @@ public class ServerController {
 		serverView.bt_manager.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				serverView.tf_log.setText("");
 			}
 		});
 		

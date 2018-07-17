@@ -5,12 +5,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ServerView extends JFrame {
 	JLabel lb_server, lb_server_working, lb_db, lb_db_working, lb_log;
 	public JButton bt_start_n_stop, bt_manager, bt_end;
-	public JTextField tf_log;
+	public JTextArea tf_log;
+	JScrollPane tf_log_scroll;
 	
 	public ServerView() {
 		this.setTitle("경매 서버");
@@ -21,9 +24,10 @@ public class ServerView extends JFrame {
 		lb_db_working = new JLabel(new ImageIcon("image/red.png"));
 		lb_log = new JLabel();
 		bt_start_n_stop = new JButton("서버 시작");
-		bt_manager = new JButton("서버 관리");
+		bt_manager = new JButton("로그 삭제");
 		bt_end = new JButton("서버 종료");
-		tf_log = new JTextField();
+		tf_log = new JTextArea();
+		tf_log_scroll = new JScrollPane(tf_log);
 		
 		this.setLayout(null);
 		lb_server.setBounds(100, 50, 120, 120);
@@ -39,7 +43,7 @@ public class ServerView extends JFrame {
 		bt_manager.setFocusable(false);
 		bt_end.setBounds(350, 250, 100, 30);
 		bt_end.setFocusable(false);
-		tf_log.setBounds(50, 320, 400, 150);
+		tf_log_scroll.setBounds(50, 320, 400, 150);
 		tf_log.setFocusable(false);
 		
 		this.add(lb_server);
@@ -49,7 +53,7 @@ public class ServerView extends JFrame {
 		this.add(bt_start_n_stop);		
 		this.add(bt_manager);		
 		this.add(bt_end);	
-		this.add(tf_log);
+		this.add(tf_log_scroll);
 		
 		this.setVisible(true);
 		this.setBounds(300, 300, 500, 550);
@@ -62,7 +66,7 @@ public class ServerView extends JFrame {
 			public void run() {
 				try {
 					lb_server_working.setVisible(true);
-					sleep(1000);
+					sleep(500);
 					lb_server_working.setVisible(false);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -76,7 +80,7 @@ public class ServerView extends JFrame {
 			public void run() {
 				try {
 					lb_db_working.setVisible(true);
-					sleep(1000);
+					sleep(500);
 					lb_db_working.setVisible(false);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
